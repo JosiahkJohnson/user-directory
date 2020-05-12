@@ -4,9 +4,11 @@ const User = require("../models/user");
 
 //our router methods we will use in the other file
 //first is the post method to make more users
-router.post("/api/newUser", ({ body }, res) => {
-    User.create(body).then(dbEntry => {
+router.post("/api/newUser", (req, res) => {
+    console.log(req.body);
+    User.create(req.body).then(dbEntry => {
         res.json(dbEntry)
+        console.log("User Added: ", dbEntry);
     })
     .catch(error => {
         res.status(400).json(error);
