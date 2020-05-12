@@ -1,14 +1,26 @@
 //our imports
-import React from "react";
+import React, { Component } from "react";
 
 //Home component
-function Home(){
-    return (
-        <div>
-            <h1>This is the home page</h1>
-            <p>It contains all of the user-directory that has been added.</p>
-        </div>
-    );
+class Home extends Component{
+    display = [];
+
+    render () {
+        return(
+        <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdown">
+                <button className="dropdown-item" type="button">All</button>
+                <button className="dropdown-item" type="button">By hire Date</button>
+                <button className="dropdown-item" type="button">By Username</button>
+                <button className="dropdown-item" type="button">By First Name</button>
+                <button className="dropdown-item" type="button">By Last Name</button>
+            </div>
+        </div> 
+        ); 
+    };
 }
 
 export default Home;
