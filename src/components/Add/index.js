@@ -1,9 +1,6 @@
 //imports
 import React, { Component } from "react";
 
-//our Mongo Source port or 8080 for testing
-const URL = process.env.MONGODB_URI || "http://localhost:8080";
-
 //out Add function component, will contain a form and submit button to add another user to the directory
 class Add extends Component{
     //set the initial state
@@ -48,7 +45,7 @@ class Add extends Component{
             console.log("User created: ", user);
 
             //fetch it to our server with a post method
-            fetch(URL + "/api/newUser", {
+            fetch("/api/newUser", {
                 method: "POST",
                 body: JSON.stringify(user),
                 headers: {
