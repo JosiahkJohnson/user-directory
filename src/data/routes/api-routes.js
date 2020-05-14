@@ -38,7 +38,7 @@ router.get("/api/users/byUsername", (req, res) => {
 });
 
 //this get method will get all the users from the database and sort it based on first Name
-router.get("/api/users/byDate", (req, res) => {
+router.get("/api/users/byfirstName", (req, res) => {
     User.find({}).sort({ firstName: -1 })
     .then(dbEntry => {
         res.json(dbEntry);
@@ -49,7 +49,7 @@ router.get("/api/users/byDate", (req, res) => {
 });
 
 //this get method will get all the users from the database and sort it based on last Name
-router.get("/api/users/byDate", (req, res) => {
+router.get("/api/users/bylastName", (req, res) => {
     User.find({}).sort({ lastName: -1 })
     .then(dbEntry => {
         res.json(dbEntry);

@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
-const path = require("path");
+//const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -11,6 +11,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/users", {
   useNewUrlParser: true,
   useFindAndModify: false
 });
+
+//if deployed on heroku
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("build"));
+};
 
 //this will allow our server to interact with other ports
 const allowCrossDomain = function(req, res, next) {
