@@ -35,7 +35,8 @@ Not applicable to this project.
 
 ## Github info:<a name = "Info"></a>
 
-![alt text](https://avatars2.githubusercontent.com/u/57826922?v=4)
+[repo](https://github.com/JosiahkJohnson/user-directory)
+[heroku](https://mongodb-user-directory.herokuapp.com/)
 
 ### Email me at:
 josiahkj123@gmail.com
