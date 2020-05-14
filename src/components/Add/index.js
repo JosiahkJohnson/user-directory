@@ -27,7 +27,7 @@ class Add extends Component{
 
     //after the submit button is pressed, submit the form to the database
     handleSubmit = event => {
-        event.preventDefault();
+        //event.preventDefault();
 
         //if any of the fields are not filled in we will inform the user that they need to input all of the data
         if (!this.state.email || !this.state.firstName || !this.state.phone || !this.state.userName || !this.state.lastName) {
@@ -52,7 +52,7 @@ class Add extends Component{
                     Accept: "application/json, text/plain, */*",
                     "Content-Type": "application/json"
                 }
-            }).then(console.log("we sent this: ", user));
+            }).then(alert("User Added"));
         };
     };
 

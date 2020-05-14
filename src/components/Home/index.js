@@ -10,23 +10,62 @@ function Home(){
     const [display, setList] = useState([]);
     //the current selection
     const [selection, setSelection] = useState("");
+    //make sure we actually need to update something
+    const [compare, setCompare] = useState("");
 
     //useEffect to load all of our list and store them
     useEffect(() => {
-        switch(selection) {
+        if(selection !== compare){
+            switch(selection) {
             case "username":
                 callUserName();
                 break;
             case "date":
+                callDate();
                 break;
             case "first":
+                callFirst();
                 break;
             case "last":
+                callLast();
                 break;
             default:
                 break;
-        }
+            }
+            //this prevents a loop of updates, though I'm sure there's a better way of doing this
+            setCompare(selection);
+        }  
     });
+
+    //sort the data by hiredate
+    function callDate() {
+        fetch("/api/users/byDate").then(function(response) {
+            response.json().then(function (data) {
+                console.log("sorting by username, results: ", data);
+                setList(data);
+            });
+        });
+    };
+
+    //sort by first name function
+    function callFirst() {
+        fetch("/api/users/byfirstName").then(function(response) {
+            response.json().then(function (data) {
+                console.log("sorting by first name, results: ", data);
+                setList(data);
+            })
+        });
+    }
+
+    //sort by last name function
+    function callLast() {
+        fetch("/api/users/bylastName").then(function(response) {
+            response.json().then(function (data) {
+                console.log("sorting by last name, results: ", data);
+                setList(data);
+            });
+        });
+    };
 
     //call the database and order by username
     function callUserName() {
@@ -34,7 +73,7 @@ function Home(){
             if(response.status === 200) {
     
                 response.json().then(function (data) {
-                    console.log("Valid connection made, results: ", data);
+                    console.log("sorting by username, results: ", data);
                     setList(data);
                 });
             };
@@ -43,6 +82,7 @@ function Home(){
 
     //whenever a new menu option is chosen, handle the input
     function handleInputChange(event) {
+        event.preventDefault();
         console.log("input change");
         const selection = event.target.value;
 
@@ -82,7 +122,7 @@ function Home(){
                         userName = {index.userName}
                         firstName = {index.firstName}
                         lastName = {index.lastName}
-                        phone = {index.phone}
+                        phone = {toString(index.phoneNumber)}
                         email = {index.email}
                     >
                     </User>
